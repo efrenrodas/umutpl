@@ -35,9 +35,9 @@ extract($_POST);
 	<h3><span class="icon-user"></span>Lista de Médicos Registrados</h3>
 		<?php
 		$query = "select * from medicos";
-		$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+		$result = mysqli_query($link,$query) or die('Consulta fallida: ' . $link->error);
 		echo "<table class='table'>";
-		while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+		while ($line = mysqli_fetch_assoc($result)) {
 		    echo "<tr>";
 		    foreach ($line as $col_value) {
 		        echo "<td>$col_value</td>";
@@ -46,14 +46,14 @@ extract($_POST);
 		    echo "</tr>";
 		}
 		echo "</table>";
-		if ($var==1) {
+		if (@$var==1) {
 			$query = "delete from medicos where id='$id'";
-			$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+			$result = mysqli_query($link,$query) or die('Consulta fallida: ' . $link->error);
 			echo "<script>location.href='medicos.php'</script>";
 		}
-		if ($var==2) {
+		if (@$var==2) {
 			$query = "insert into medicos values('','$nombre','$codigo')";
-			$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+			$result = mysqli_query($link,$query) or die('Consulta fallida: ' . $link->error);
 			echo "<script>location.href='medicos.php'</script>";
 		}
 		?>

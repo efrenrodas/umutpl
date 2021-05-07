@@ -14,18 +14,18 @@ if ($anios>=50 and $anios <= 65) {$tipo_paciente="Mayor";}
 if ($anios>65) {$tipo_paciente="3ra edad";}
 
 $query = "insert into atenciones_medicas values('','$nombre','$apellido','$cedula','$genero','$fecha_nacimiento','$correo','$direccion','$tipo_paciente','$medico','$sintomas','$prescripcion','$indicaciones')";
-$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+$result = mysqli_query($link,$query) or die('Consulta fallida: ' . $link->error);
 
 $query1 = "select max(id) from atenciones_medicas";
-$result1 = mysql_query($query1) or die('Consulta fallida: ' . mysql_error());
-while ($line = mysql_fetch_row($result1)){ 
+$result1 = mysqli_query($link,$query1) or die('Consulta fallida: ' . $link->error);
+while ($line = mysqli_fetch_row($result1)){ 
         $id_atencion=$line[0];
 }
 
 for ($i=0;$i<count($enfermedades);$i++)    
 {     
 	$query = "insert into diagnosticos values('','$id_atencion','$enfermedades[$i]')";
-	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());   
+	$result = mysqli_query($link,$query) or die('Consulta fallida: ' . $link->error);   
 } 
 echo '<script>alert("datos guardados..")</script>';
 echo "<script>location.href='listar.php'</script>";

@@ -55,8 +55,8 @@ include ("dll/mysql.php");
 						<option value=""></option>
 					  	<?php
 							$query="select * from medicos";
-							$medicos = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
-							while ($medico = mysql_fetch_array($medicos, MYSQL_ASSOC)) 
+							$medicos = mysqli_query($link,$query) or die('Consulta fallida: ' . $link->error);
+							while ($medico = mysqli_fetch_assoc($medicos)) 
 							{ ?>
 							<option value="<?php echo $medico['id'];?>"><?php echo $medico['nombre'];?></option><?PHP
 							}
@@ -68,8 +68,8 @@ include ("dll/mysql.php");
 					<select name="enfermedades[]" multiple>
 					  <?php
 							$query="select * from enfermedades";
-							$medicos = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
-							while ($medico = mysql_fetch_array($medicos, MYSQL_ASSOC)) 
+							$medicos = mysqli_query($link,$query) or die('Consulta fallida: ' . $link->error);
+							while ($medico = mysqli_fetch_assoc($medicos)) 
 							{ ?>
 							<option value="<?php echo $medico['id'];?>"><?php echo $medico['nombre'];?></option><?PHP
 							}

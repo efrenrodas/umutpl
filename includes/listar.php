@@ -19,7 +19,7 @@ include("../dll/mysql.php");
 	<h3><span class="icon-user"></span>Listar Registros</h3>
 		<?php
 		$query = "select a.id, a.nombre, a.apellido, a.cedula, a.email,a.tipo_paciente, m.nombre  from atenciones_medicas a, medicos m where a.id_medico=m.id";
-		$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+		$result = mysqli_query($link,$query) or die('Consulta fallida: ' . $link->error);
 		echo "<table class='table'>";
 		echo "<tr>";
 			echo "<td><strong>ID</strong></td>";
@@ -30,7 +30,7 @@ include("../dll/mysql.php");
 			echo "<td><strong>TIPO</strong></td>";
 			echo "<td><strong>DOCTOR</strong></td>";
 		echo "</tr>";
-		while ($line = mysql_fetch_row($result)){ 
+		while ($line = mysqli_fetch_row($result)){ 
 		    echo "<tr>";
 		        echo "<td>$line[0]</td>";
 		        echo "<td>$line[1]</td>";

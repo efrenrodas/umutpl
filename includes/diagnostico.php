@@ -20,8 +20,8 @@ $list_gen['M']='Mujer';
 	<section id="contenedor">
 		<?php
 		$query = "select * from atenciones_medicas where id='$id'";
-		$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
-		while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+		$result = mysqli_query($link,$query) or die('Consulta fallida: ' . $link->error);
+		while ($line = mysqli_fetch_assoc($result)) {
 		    foreach ($line as $col_value) {
 		       // echo "<td>$col_value</td>";
 		    	$id=$line['id'];
@@ -65,8 +65,8 @@ $list_gen['M']='Mujer';
 					<label for="medico">Medico Tratante</label>
 						<?php
 							$query1="select * from medicos where id='$id_medico'";
-							$medicos = mysql_query($query1) or die('Consulta fallida: ' . mysql_error());
-							while ($medico = mysql_fetch_array($medicos, MYSQL_ASSOC)) 
+							$medicos = mysqli_query($link,$query1) or die('Consulta fallida: ' . $link->error);
+							while ($medico = mysqli_fetch_assoc($medicos)) 
 							{ 
 							 echo $medico['nombre'];
 							}
@@ -74,9 +74,9 @@ $list_gen['M']='Mujer';
 					<label for="medico">DIAGNOSTICO</label>
 						<?php
 							$query1="select e.nombre from enfermedades e,diagnosticos d where d.id_atencion='$id' and d.id_enfermedad=e.id";
-							$medicos = mysql_query($query1) or die('Consulta fallida: ' . mysql_error());
+							$medicos = mysqli_query($link,$query1) or die('Consulta fallida: ' . $link->error);
 							echo "<ul>";
-							while ($medico = mysql_fetch_array($medicos, MYSQL_ASSOC)) 
+							while ($medico = mysqli_fetch_assoc($medicos)) 
 							{ 
 							 echo "<li>".$medico['nombre']."</li>";
 							}

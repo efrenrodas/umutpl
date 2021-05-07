@@ -1,11 +1,11 @@
 <?php
 	/*Datos de la aplicacion*/
 	$site_name="Unidad Médica UTPL";
-	$url_site="http://127.0.0.1/tutoria1/";
+	$url_site="http://localhost:8080/umutpl/";
 
 	/*datos de la base de datos*/
 	$db_usr="root";
-	$db_pass="-----";
-	$db_name="tutoria1db";
-	$db_host="127.0.0.1";
+	$db_pass="";
+	$db_name="umutpldb";
+	$db_host="localhost";
 ?>
